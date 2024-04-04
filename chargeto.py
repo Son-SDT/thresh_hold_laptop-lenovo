@@ -68,7 +68,8 @@ def chargeto(x):
         
 if __name__ == "__main__":
     try :
-        x = int(sys.argv[1])
+        x=80
+        #x = int(sys.argv[1])
         getbat = get_battery_percentage()
         if getbat < x and x<=100:
             set_battery_mode(0)
@@ -76,7 +77,7 @@ if __name__ == "__main__":
             count(10)
             if check_plugin() :
                 print("Pluged")
-                print(f"Charging from {(getbat())}% to {x}%")
+                print(f"Charging from {getbat}% to {x}%")
                 chargeto(x)
             else:
                 set_battery_mode(1)
