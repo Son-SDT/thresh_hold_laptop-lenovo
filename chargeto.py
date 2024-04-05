@@ -46,7 +46,7 @@ def check_battery(bat,x,output):
         output = set_battery_mode(0)
         return True,output
     else:
-        set_battery_mode(0)
+        set_battery_mode(1)
         return False
 def count(seconds=60):
     for i in range(seconds, 0, -1):
@@ -58,7 +58,7 @@ def chargeto(x):
     check,output = check_battery(battery,x,output)
     while check:
         if x-battery <= 1 : seconds = 30 
-        else : seconds = 180
+        else : seconds = 60
         if count(seconds) == 1:
             battery = get_battery_percentage()
             print(f"battery : {battery}%")
@@ -68,8 +68,8 @@ def chargeto(x):
         
 if __name__ == "__main__":
     try :
-        x=80
-        #x = int(sys.argv[1])
+        #x=80
+        x = int(sys.argv[1])
         getbat = get_battery_percentage()
         if getbat < x and x<=100:
             set_battery_mode(0)
