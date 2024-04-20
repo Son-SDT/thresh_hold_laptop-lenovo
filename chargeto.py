@@ -26,7 +26,7 @@ def run_cmd(command):
     except Exception as e:
         print("An error occurred:", e)
 def set_battery_mode(mode):
-    run_cmd(f"echo {mode}  | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004\:00/conservation_mode")
+    run_cmd(f"echo {mode}  | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC2004\:00/conservation_mode &")
         
 def get_battery_percentage():
     battery_get = psutil.sensors_battery()
@@ -85,9 +85,12 @@ if __name__ == "__main__":
                 set_battery_mode(1)
                 print("Unpluged")
         else:
-            print(f"Your battery {getbat}% over {x}%")
+            if getbat == x :
+                print(f"Your battery is {getbat}")
+            else:
+                print(f"Your battery {getbat}% over {x}%")
             set_battery_mode(1)
-
+            pass
     except :
         set_battery_mode(1)
         
